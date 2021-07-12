@@ -1,10 +1,12 @@
 
+import { Register } from './pages/Register';
+
 import GlobalStyles from './styles/global'
 
 function App() {
   return (
     <>
-      <div>Teste</div>
+      <Register />
 
       <GlobalStyles />
     </>
