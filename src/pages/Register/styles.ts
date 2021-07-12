@@ -56,19 +56,7 @@ export const Container = styled.main`
 		}
 
 		button[type="submit"] {
-			border: 0;
-			border-radius: 0.875rem;
 			margin-top: 5rem;
-
-			height: 4.06rem;
-			background: var(--orange);
-			color: var(--white);
-
-			transition: filter 0.2s;
-
-			&:hover {
-				filter: brightness(0.95);
-			}
 		}
 
 		> p {

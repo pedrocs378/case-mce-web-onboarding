@@ -1,4 +1,6 @@
 
+import { Button } from '../../components/Button'
+
 import * as S from './styles'
 
 export function Register() {
@@ -12,7 +14,7 @@ export function Register() {
 				<input type="text" placeholder="Senha" />
 				<input type="text" placeholder="Confirmar senha" />
 
-				<button type="submit">Cadastrar</button>
+				<Button type="submit">Cadastrar</Button>
 
 				<p>
 					Já tem conta?{' '}
