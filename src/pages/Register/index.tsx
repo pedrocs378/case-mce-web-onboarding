@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 
 import { Button } from '../../components/Button'
@@ -14,8 +13,6 @@ export function Register() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [passwordConfirmation, setPasswordConfirmation] = useState('')
-	const [showPassword, setShowPassword] = useState(false)
-	const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false)
 
 	return (
 		<S.Container>
