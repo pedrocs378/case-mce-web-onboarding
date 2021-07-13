@@ -20,6 +20,7 @@ export function InputPassword(props: InputProps) {
 		>
 			<button
 				type="button"
+				title={showPassword ? 'Esconder senha' : 'Mostrar senha'}
 				onClick={handleToggleShowPassword}
 			>
 				{showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}

@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 import { Input } from '../../components/Input'
@@ -14,10 +14,13 @@ export function Login() {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 
+	const history = useHistory()
+
 	function handleLogin(event: FormEvent) {
 		event.preventDefault()
 
 		toast.error('Teste')
+		history.push('/')
 	}
 
 	return (
