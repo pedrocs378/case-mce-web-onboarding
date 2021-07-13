@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom'
 
 import { Input } from '../../components/Input'
+import { InputPassword } from '../../components/Input/InputPassword'
+import { Button } from '../../components/Button'
 
 import logoImg from '../../assets/images/logo.png'
 
 import { Container } from './styles'
-import { InputPassword } from '../../components/Input/InputPassword'
 
 export function Login() {
 
@@ -15,6 +17,15 @@ export function Login() {
 
 				<Input name="username" placeholder="Login" />
 				<InputPassword name="password" placeholder="Senha" />
+
+				<Link to="/forgot-password">Esqueci minha senha</Link>
+
+				<Button type="submit">Login</Button>
+
+				<p>
+					Não tem conta?{' '}
+					<Link to="/register">Registrar</Link>
+				</p>
 			</form>
 		</Container>
 	)

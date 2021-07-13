@@ -49,8 +49,22 @@ export const Container = styled.main`
 			margin-top: 1.5rem;
 		}
 
+		> a {
+			align-self: flex-start;
+			font-size: 0.75rem;
+			text-decoration: none;
+			color: var(--gray190);
+			margin-top: 1.5rem;
+
+			transition: opacity 0.2s;
+
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+
 		button[type="submit"] {
-			margin-top: 5rem;
+			margin-top: 3rem;
 		}
 
 		> p {

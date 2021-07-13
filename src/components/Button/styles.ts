@@ -5,6 +5,7 @@ export const Container = styled.button`
 	border-radius: 0.875rem;
 
 	height: 4.06rem;
+	width: 100%;
 	background: var(--orange);
 	color: var(--white);
 
