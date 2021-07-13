@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import listIcon from '../../assets/icons/list-icon.svg'
+
 import { Container, ProfileContainer } from './styles'
 
 export function Home() {
@@ -8,6 +10,7 @@ export function Home() {
 		<Container>
 			<header>
 				<ProfileContainer>
+					<span>72</span>
 					<img src="http://www.github.com/pedrocs378.png" alt="Pedro César" />
 					<div>
 						<strong>Pedro César</strong>
@@ -15,6 +18,10 @@ export function Home() {
 					</div>
 				</ProfileContainer>
 			</header>
+
+			<button type="button">
+				<img src={listIcon} alt="Listar agendamentos" />
+			</button>
 		</Container>
 	)
 }
