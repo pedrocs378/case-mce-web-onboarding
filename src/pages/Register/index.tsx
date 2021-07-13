@@ -58,7 +58,7 @@ export function Register() {
 
 				<p>
 					Já tem conta?{' '}
-					<Link to="/">Login</Link>
+					<Link to="/login">Login</Link>
 				</p>
 			</form>
 		</S.Container>
