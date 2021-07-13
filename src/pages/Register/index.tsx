@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
+import { InputPassword } from '../../components/Input/InputPassword'
 
 import * as S from './styles'
 
@@ -39,40 +41,24 @@ export function Register() {
 					value={email}
 					onChange={event => setEmail(event.target.value)}
 				/>
-				<Input
-					type={showPassword ? 'text' : 'password'}
+				<InputPassword
 					name="password"
 					placeholder="Senha"
 					value={password}
 					onChange={event => setPassword(event.target.value)}
-				>
-					<button
-						type="button"
-						onClick={() => setShowPassword(state => !state)}
-					>
-						{showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-					</button>
-				</Input>
-				<Input
-					type={showPasswordConfirmation ? 'text' : 'password'}
+				/>
+				<InputPassword
 					name="password_confirmation"
 					placeholder="Confirmar senha"
 					value={passwordConfirmation}
 					onChange={event => setPasswordConfirmation(event.target.value)}
-				>
-					<button
-						type="button"
-						onClick={() => setShowPasswordConfirmation(state => !state)}
-					>
-						{showPasswordConfirmation ? <AiFillEyeInvisible /> : <AiFillEye />}
-					</button>
-				</Input>
+				/>
 
 				<Button type="submit">Cadastrar</Button>
 
 				<p>
 					Já tem conta?{' '}
-					<a href="/">Login</a>
+					<Link to="/">Login</Link>
 				</p>
 			</form>
 		</S.Container>

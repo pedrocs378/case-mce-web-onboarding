@@ -7,6 +7,7 @@ type ContainerProps = {
 
 export const Container = styled.label<ContainerProps>`
 	height: 4.06rem;
+	width: 100%;
 	background: var(--shape);
 	border: 2px solid transparent;
 	border-color: ${({ isFocused, isFilled }) => (isFocused || isFilled) && 'var(--orange)'};

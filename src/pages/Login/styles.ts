@@ -36,8 +36,14 @@ export const Container = styled.main`
 
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 
 		background: var(--white);
+
+		img {
+			max-width: 11rem;
+			margin-bottom: 6.25rem;
+		}
 
 		label + label {
 			margin-top: 1.5rem;
