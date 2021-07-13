@@ -4,6 +4,7 @@ import backgroundImg from '../../assets/images/background.png'
 
 export const Container = styled.main`
 	height: 100vh;
+	overflow: hidden;
 	position: relative;
 
 	display: flex;
@@ -37,22 +38,8 @@ export const Container = styled.main`
 
 		background: var(--white);
 
-		input {
-			height: 4.06rem;
-			padding: 1.375rem 1.25rem;
-			background: var(--shape);
-			color: var(--black);
-
-			border: 0;
-			border-radius: 0.75rem;
-
-			&::placeholder {
-				color: var(--gray200);
-			}
-
-			& + input {
-				margin-top: 1.5rem;
-			}
+		label + label {
+			margin-top: 1.5rem;
 		}
 
 		button[type="submit"] {
