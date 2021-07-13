@@ -1,15 +1,28 @@
 import styled from "styled-components";
 
-export const Container = styled.label`
+type ContainerProps = {
+	isFocused: boolean
+	isFilled: boolean
+}
+
+export const Container = styled.label<ContainerProps>`
 	height: 4.06rem;
 	background: var(--shape);
+	border: 2px solid transparent;
+	border-color: ${({ isFocused, isFilled }) => (isFocused || isFilled) && 'var(--orange)'};
 	
 	border-radius: 0.75rem;
 
 	position: relative;
+	transition: border-color 0.2s;
+
+	&:hover {
+		border-color: var(--orange);
+	}
 
 	input {
 		border: 0;
+		outline: none;
 		height: 100%;
 		width: 100%;
 		padding: 1.375rem 1.25rem;
