@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	height: 100vh;
-	padding: 3.125rem 4.375rem;
+	height: calc(100vh - 8.75rem);
 	position: relative;
 
 	main {
@@ -18,7 +17,7 @@ export const Container = styled.div`
 
 	> button[type="button"] {
 		position: absolute;
-		right: 1.125rem;
+		right: 0;
 		bottom: 2.5rem;
 		height: 4rem;
 		width: 4rem;

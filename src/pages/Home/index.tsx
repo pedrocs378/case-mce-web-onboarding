@@ -35,8 +35,6 @@ export function Home() {
 
 	return (
 		<S.Container>
-			<Header />
-
 			<main>
 				<S.MainHeader>
 					<button type="button" onClick={handleGoToPrevDate}>
