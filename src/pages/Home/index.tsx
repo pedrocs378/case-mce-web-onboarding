@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react'
-import { Link } from 'react-router-dom'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { format } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 import { Timeline } from 'antd'
 import 'antd/dist/antd.css'
 
+import { Header } from '../../components/Header'
 import { CustomerCard } from '../../components/CustomerCard'
 
 import listIcon from '../../assets/icons/list-icon.svg'
@@ -35,16 +35,7 @@ export function Home() {
 
 	return (
 		<S.Container>
-			<header>
-				<S.ProfileContainer>
-					<span>72</span>
-					<img src="http://www.github.com/pedrocs378.png" alt="Pedro César" />
-					<div>
-						<strong>Pedro César</strong>
-						<Link to="/profile">Meu perfil</Link>
-					</div>
-				</S.ProfileContainer>
-			</header>
+			<Header />
 
 			<main>
 				<S.MainHeader>

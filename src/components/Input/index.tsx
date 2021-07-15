@@ -1,6 +1,6 @@
 import { useRef, useState, useCallback, InputHTMLAttributes } from "react"
 
-import { Container } from './styles'
+import * as S from './styles'
 
 type InputProps = InputHTMLAttributes<HTMLInputElement>
 
@@ -18,7 +18,7 @@ export function Input({ children, ...rest }: InputProps) {
 	}, [])
 
 	return (
-		<Container
+		<S.Container
 			isFocused={isFocused}
 			isFilled={!!inputRef.current?.value.trim()}
 		>
@@ -29,6 +29,6 @@ export function Input({ children, ...rest }: InputProps) {
 				{...rest}
 			/>
 			{children}
-		</Container>
+		</S.Container>
 	)
 }

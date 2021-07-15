@@ -8,7 +8,7 @@ import { Button } from '../../components/Button'
 
 import logoImg from '../../assets/images/logo.png'
 
-import { Container } from './styles'
+import * as S from './styles'
 
 export function Login() {
 	const [username, setUsername] = useState('')
@@ -24,7 +24,7 @@ export function Login() {
 	}
 
 	return (
-		<Container>
+		<S.Container>
 			<form onSubmit={handleLogin}>
 				<img src={logoImg} alt="Mind Education" />
 
@@ -50,6 +50,6 @@ export function Login() {
 					<Link to="/register">Registrar</Link>
 				</p>
 			</form>
-		</Container>
+		</S.Container>
 	)
 }
