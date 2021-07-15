@@ -5,7 +5,6 @@ import ptBR from 'date-fns/locale/pt-BR'
 import { Timeline } from 'antd'
 import 'antd/dist/antd.css'
 
-import { Header } from '../../components/Header'
 import { CustomerCard } from '../../components/CustomerCard'
 
 import listIcon from '../../assets/icons/list-icon.svg'

@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { Home } from "../pages/Home";
+import { Profile } from "../pages/Profile";
 
 import { Header } from "../components/Header";
 
@@ -19,6 +20,7 @@ export function Routes() {
 				<Header />
 
 				<Route path="/" exact component={Home} />
+				<Route path="/profile" component={Profile} />
 			</S.Container>
 		</Switch>
 	)
