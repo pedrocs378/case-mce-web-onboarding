@@ -2,6 +2,7 @@ import { Switch } from "react-router-dom";
 
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
+import { ForgotPassword } from "../pages/ForgotPassword";
 import { Home } from "../pages/Home";
 import { Profile } from "../pages/Profile";
 
@@ -18,6 +19,7 @@ export function Routes() {
 		<Switch>
 			<PublicRoute path="/login" component={Login} />
 			<PublicRoute path="/register" component={Register} />
+			<PublicRoute path="/forgot-password" component={ForgotPassword} />
 
 			<S.Container>
 				<Header />

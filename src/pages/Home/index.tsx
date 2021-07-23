@@ -48,7 +48,7 @@ export function Home() {
 
 	useEffect(() => {
 		const day = selectedDate.getDate()
-		const month = selectedDate.getMonth() + 1
+		const month = selectedDate.getMonth()
 		const year = selectedDate.getFullYear()
 
 		api

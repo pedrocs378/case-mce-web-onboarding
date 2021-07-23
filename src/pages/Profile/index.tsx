@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react'
+import { FiArrowLeft } from 'react-icons/fi'
 
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
@@ -9,6 +10,7 @@ import { useAuth } from '../../hooks/useAuth'
 import cameraIcon from '../../assets/icons/camera-edit-icon.svg'
 
 import * as S from './styles'
+import { Link } from 'react-router-dom'
 
 export function Profile() {
 	const { user } = useAuth()
@@ -25,6 +27,9 @@ export function Profile() {
 	return (
 		<S.Container>
 			<main>
+				<Link to="/">
+					<FiArrowLeft />
+				</Link>
 				<form onSubmit={handleSaveChanges}>
 					<S.AvatarContainer>
 						<img src="http://www.github.com/pedrocs378.png" alt="Pedro César" />
