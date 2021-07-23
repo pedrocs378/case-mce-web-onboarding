@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
@@ -7,20 +7,23 @@ import { Profile } from "../pages/Profile";
 
 import { Header } from "../components/Header";
 
+import { PublicRoute } from "./PublicRoute";
+import { PrivateRoute } from "./PrivateRoute";
+
 import * as S from '../styles/home'
 
 export function Routes() {
 
 	return (
 		<Switch>
-			<Route path="/login" component={Login} />
-			<Route path="/register" component={Register} />
+			<PublicRoute path="/login" component={Login} />
+			<PublicRoute path="/register" component={Register} />
 
 			<S.Container>
 				<Header />
 
-				<Route path="/" exact component={Home} />
-				<Route path="/profile" component={Profile} />
+				<PrivateRoute path="/" exact component={Home} />
+				<PrivateRoute path="/profile" component={Profile} />
 			</S.Container>
 		</Switch>
 	)

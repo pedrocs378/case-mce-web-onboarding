@@ -4,14 +4,18 @@ import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { InputPassword } from '../../components/Input/InputPassword'
 
+import { useAuth } from '../../hooks/useAuth'
+
 import cameraIcon from '../../assets/icons/camera-edit-icon.svg'
 
 import * as S from './styles'
 
 export function Profile() {
-	const [username, setUsername] = useState('')
-	const [phone, setPhone] = useState('')
-	const [email, setEmail] = useState('')
+	const { user } = useAuth()
+
+	const [name, setName] = useState(user?.name ?? '')
+	const [phone, setPhone] = useState(user?.phone ?? '')
+	const [email, setEmail] = useState(user?.email ?? '')
 	const [password, setPassword] = useState('')
 
 	function handleSaveChanges(event: FormEvent) {
@@ -32,10 +36,10 @@ export function Profile() {
 					</S.AvatarContainer>
 
 					<Input
-						name="username"
+						name="text"
 						placeholder="Nome do usuário"
-						value={username}
-						onChange={event => setUsername(event.target.value)}
+						value={name}
+						onChange={event => setName(event.target.value)}
 					/>
 					<Input
 						name="phone"

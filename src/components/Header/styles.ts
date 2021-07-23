@@ -59,4 +59,24 @@ export const ProfileContainer = styled.div`
 			}
 		}
 	}
+
+	> button {
+		margin-left: 1rem;
+		font-size: 0;
+		padding: 0.5rem;
+		border-radius: 50%;
+		border: 0;
+		background: transparent;
+
+		transition: opacity 0.2s;
+
+		svg {
+			height: 22px;
+			width: 22px;
+		}
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
 `
