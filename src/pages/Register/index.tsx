@@ -1,28 +1,52 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { FormEvent, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { InputPassword } from '../../components/Input/InputPassword'
 
+import { api } from '../../services/api'
+
 import * as S from './styles'
 
 export function Register() {
-	const [username, setUsername] = useState('')
+	const [name, setName] = useState('')
 	const [phone, setPhone] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [passwordConfirmation, setPasswordConfirmation] = useState('')
+	const [password_confirmation, setPasswordConfirmation] = useState('')
+
+	const history = useHistory()
+
+	async function handleRegister(event: FormEvent) {
+		event.preventDefault()
+
+		try {
+			await api.post('/users/personal', {
+				name,
+				phone,
+				email,
+				password,
+				password_confirmation
+			})
+
+			toast.success('Cadastro salvo')
+			history.push('/login')
+		} catch (err) {
+			toast.error(err.response?.data.message)
+		}
+	}
 
 	return (
 		<S.Container>
-			<form>
+			<form onSubmit={handleRegister}>
 				<Input
 					type="text"
-					name="username"
-					placeholder="Usuário"
-					value={username}
-					onChange={event => setUsername(event.target.value)}
+					name="name"
+					placeholder="Nome do usuário"
+					value={name}
+					onChange={event => setName(event.target.value)}
 				/>
 				<Input
 					type="tel"
@@ -47,7 +71,7 @@ export function Register() {
 				<InputPassword
 					name="password_confirmation"
 					placeholder="Confirmar senha"
-					value={passwordConfirmation}
+					value={password_confirmation}
 					onChange={event => setPasswordConfirmation(event.target.value)}
 				/>
 
