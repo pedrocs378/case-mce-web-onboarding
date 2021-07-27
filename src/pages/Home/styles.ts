@@ -77,7 +77,8 @@ export const MainHeader = styled.div`
 
 export const MainContent = styled.div`
 	display: flex;
-	align-items: flex-start;
+	flex-direction: column;
+	justify-content: flex-start;
 	
 	ul {
 		width: 100%;
@@ -138,8 +139,9 @@ export const AvailabilityButton = styled.button<AvailabilityButtonProps>`
 	`}
 
 	display: inline-flex;
-	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+	align-self: center;
 
 	& + button {
 		margin-left: 1rem;

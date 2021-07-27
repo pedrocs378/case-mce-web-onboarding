@@ -104,6 +104,14 @@ export function Home() {
 							)
 						})}
 					</Timeline>
+					{!showAppointments && (
+						<S.AvailabilityButton 
+							type="button"
+							enabled
+						>
+							Confimar
+						</S.AvailabilityButton>
+					)}
 				</S.MainContent>
 			</main>
 
