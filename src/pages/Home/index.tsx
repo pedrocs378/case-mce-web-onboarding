@@ -29,6 +29,7 @@ type Appointment = {
 export function Home() {
 	const [appointments, setAppointments] = useState<Appointment[]>([])
 	const [selectedDate, setSelectedDate] = useState(new Date())
+	const [showAppointments, setShowAppointments] = useState(true)
 	
 	const { user } = useAuth()
 
@@ -79,10 +80,25 @@ export function Home() {
 									key={appointment.hour} 
 									label={`${appointment.hour}h`}
 								>
-									{appointment.user && (
+									{ showAppointments ? appointment.user && (
 										<CustomerCard
 											customer={appointment.user}
 										/>
+									) : (
+										<>
+											<S.AvailabilityButton 
+												type="button"
+												enabled={true}
+											>
+												Disponivel
+											</S.AvailabilityButton>
+											<S.AvailabilityButton 
+												type="button"
+												enabled={false}
+											>
+												Não disponivel
+											</S.AvailabilityButton>
+										</>
 									)}
 								</Timeline.Item>
 							)
@@ -91,7 +107,7 @@ export function Home() {
 				</S.MainContent>
 			</main>
 
-			<button type="button">
+			<button type="button" onClick={() => setShowAppointments(state => !state)}>
 				<img src={listIcon} alt="Listar agendamentos" />
 			</button>
 		</S.Container>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
 	position: relative;
@@ -114,5 +114,34 @@ export const MainContent = styled.div`
 				top: -50%;
 			}		
 		}
+	}
+`
+
+type AvailabilityButtonProps = {
+	enabled: boolean
+}
+
+export const AvailabilityButton = styled.button<AvailabilityButtonProps>`
+	height: 2.5rem;
+	padding: 0.625rem;
+	border-radius: 0.625rem;
+	font: 700 0.75rem 'Montserrat', sans-serif;
+	border: 1px solid var(--orange);
+	background: var(--white);
+	color: var(--orange);
+	margin-top: 10px;
+
+	${({ enabled }) => enabled && css`
+		border-color: transparent;
+		background: var(--orange);
+		color: var(--white);
+	`}
+
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+
+	& + button {
+		margin-left: 1rem;
 	}
 `

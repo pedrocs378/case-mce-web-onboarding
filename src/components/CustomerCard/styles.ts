@@ -7,7 +7,7 @@ export const Container = styled.div`
 	padding: 0rem 1.125rem;
 	border-radius: 0.5rem;
 	font-family: 'Montserrat', sans-serif;
-
+	
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
