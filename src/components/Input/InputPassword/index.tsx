@@ -1,10 +1,7 @@
-import { useCallback } from "react";
-import { useState, InputHTMLAttributes } from "react";
+import { useCallback, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-import { Input } from "..";
-
-type InputProps = InputHTMLAttributes<HTMLInputElement>
+import { Input, InputProps } from "..";
 
 export function InputPassword(props: InputProps) {
 	const [showPassword, setShowPassword] = useState(false)

@@ -1,8 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 type ContainerProps = {
 	isFocused: boolean
 	isFilled: boolean
+	isValidated: boolean
+	isErrored: boolean
 }
 
 export const Container = styled.label<ContainerProps>`
@@ -12,14 +14,19 @@ export const Container = styled.label<ContainerProps>`
 
 	border: 2px solid transparent;
 	border-color: ${({ isFocused, isFilled }) => (isFocused || isFilled) && 'var(--orange)'};
+	border-color: ${({ isErrored }) => isErrored && 'var(--red)'};
 	border-radius: 0.75rem;
 
 	position: relative;
 	overflow: hidden;
-	transition: border-color 0.2s;
+	transition: all 0.3s;
 
 	&:hover {
-		border-color: var(--orange);
+		border-color: ${({ isValidated, isErrored }) => 
+			!isValidated && 
+			!isErrored && 
+			'var(--orange)'
+		};
 	}
 
 	input {
@@ -53,4 +60,32 @@ export const Container = styled.label<ContainerProps>`
 			color: var(--gray200);
 		}
 	}
+
+	> svg {
+		position: absolute;
+		right: 1.25rem;
+		top: 50%;
+		transform: translateY(-50%);
+
+		height: 1.2rem;
+		width: 1.2rem;
+		color: var(--white);
+	}
+
+	button[type="button"] ~ svg {
+		right: 3rem;
+	}
+
+	${({ isValidated }) => isValidated && css`
+		background: var(--purple-dark);
+		border-color: var(--purple-dark);
+
+		input {
+			color: var(--white);
+			
+			&::placeholder {
+				color: var(--white);
+			} 
+		}
+	`}
 `
