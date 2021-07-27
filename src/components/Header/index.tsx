@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
 
@@ -6,7 +6,6 @@ import { useAuth } from '../../hooks/useAuth'
 import { useNotification } from '../../hooks/useNotification'
 
 import * as S from './styles'
-import { useEffect } from 'react'
 
 export function Header() {
 	const { user, signOut } = useAuth()
