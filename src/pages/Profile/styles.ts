@@ -20,10 +20,11 @@ export const Container = styled.div`
 			left: 1rem;
 
 			font-size: 0;
-			padding: 0.5rem;
+			padding: 0.8rem;
 			border-radius: 50%;
+			background: var(--white);
 
-			transition: opacity 0.2s;
+			transition: all 0.2s;
 
 			svg {
 				height: 20px;
@@ -32,7 +33,7 @@ export const Container = styled.div`
 			}
 
 			&:hover {
-				opacity: 0.8;
+				filter: brightness(0.95);
 			}
 		}
 
