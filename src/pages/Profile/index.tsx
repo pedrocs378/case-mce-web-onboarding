@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { FiArrowLeft } from 'react-icons/fi'
 import Loading from 'react-loading'
 import { toast } from 'react-hot-toast'
@@ -11,6 +11,7 @@ import { InputPassword } from '../../components/Input/InputPassword'
 import { useAuth } from '../../hooks/useAuth'
 import { api } from '../../services/api'
 
+import userPlaceholderImg from '../../assets/images/user-placeholder.png'
 import cameraIcon from '../../assets/icons/camera-edit-icon.svg'
 
 import * as S from './styles'
@@ -50,6 +51,28 @@ export function Profile() {
 		}
 	}
 
+	const handleUpdateAvatar = async (event: ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files) {
+			try {
+				const data = new FormData()
+
+				data.append('avatar', event.target.files[0])
+
+				const response = await api.patch('/users/avatar', data)
+				updateUserData(response.data)
+				toast.success('Avatar atualizado')
+			} catch (err) {
+				let message = 'Não foi possivel atualizar seu avatar'
+
+				if (err.response.data.message) {
+					message = err.response.data.message
+				}
+
+				toast.error(message)
+			}
+		}
+	}
+
 	return (
 		<S.Container>
 			<main>
@@ -58,10 +81,15 @@ export function Profile() {
 				</Link>
 				<form onSubmit={handleSaveChanges}>
 					<S.AvatarContainer>
-						<img src="http://www.github.com/pedrocs378.png" alt="Pedro César" />
+						<img src={user?.avatar_url ?? userPlaceholderImg} alt={user?.name} />
 
 						<label htmlFor="avatar">
-							<input type="file" name="avatar" id="avatar" />
+							<input 
+								type="file" 
+								name="avatar" 
+								id="avatar" 
+								onChange={handleUpdateAvatar} 
+							/>
 							<img src={cameraIcon} alt="Icone Camera" />
 						</label>
 					</S.AvatarContainer>

@@ -5,6 +5,8 @@ import { FiLogOut } from 'react-icons/fi'
 import { useAuth } from '../../hooks/useAuth'
 import { useNotification } from '../../hooks/useNotification'
 
+import userPlaceholderImg from '../../assets/images/user-placeholder.png'
+
 import * as S from './styles'
 
 export function Header() {
@@ -34,7 +36,7 @@ export function Header() {
 					</S.NotificationButton>
 				)}
 
-				<img src="http://www.github.com/pedrocs378.png" alt={user?.name} />
+				<img src={user?.avatar_url ?? userPlaceholderImg} alt={user?.name} />
 
 				{showNotifications && (
 					<S.NotificationsContainer>

@@ -2,14 +2,12 @@ import { createContext, ReactNode, useState, useCallback } from "react";
 
 import { api } from "../services/api";
 
-type AccessLevelTypes = 'user' | 'personal'
-
 interface User {
 	id: string
 	name: string
 	phone: string
 	email: string
-	accessLevel: AccessLevelTypes[]
+	avatar_url?: string
 }
 
 interface SignInCredentials {
