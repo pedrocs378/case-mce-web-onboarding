@@ -8,6 +8,7 @@ interface User {
 	phone: string
 	email: string
 	avatar_url?: string
+	accessLevel: ('personal' | 'user')[]
 }
 
 interface SignInCredentials {
