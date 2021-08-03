@@ -1,7 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
-import Loading from 'react-loading'
 import * as Yup from 'yup'
 
 import { Input } from '../../components/Input'
@@ -146,15 +145,8 @@ export function Login() {
 
 				<Link to="/forgot-password">Esqueci minha senha</Link>
 
-				<Button type="submit">
-					{isLoading ? 
-						<Loading 
-							type="spinningBubbles"
-							height={24}
-							width={24}
-							color="var(--white)"
-						/> 
-						: "Login"}
+				<Button type="submit" loading={isLoading}>
+					Login
 				</Button>
 
 				<p>

@@ -5,7 +5,6 @@ import { QueryClientProvider } from 'react-query'
 import { Routes } from './routes';
 
 import { AuthProvider } from './contexts/AuthContext';
-import { NotificationProvider } from './contexts/NotificationContext';
 
 import { queryClient } from './services/queryClient';
 
@@ -16,26 +15,24 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <NotificationProvider>
-            <Routes />
+          <Routes />
 
-            <Toaster
-              position="bottom-right"
-              toastOptions={{
-                duration: 3000,
-                error: {
-                  iconTheme: {
-                    primary: 'var(--red)',
-                    secondary: 'var(--white)',
-                  },
-                  style: {
-                    color: 'var(--black)',
-                  }
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              duration: 3000,
+              error: {
+                iconTheme: {
+                  primary: 'var(--red)',
+                  secondary: 'var(--white)',
+                },
+                style: {
+                  color: 'var(--black)',
                 }
-              }}
-            />
-            <GlobalStyles />
-          </NotificationProvider>
+              }
+            }}
+          />
+          <GlobalStyles />
         </QueryClientProvider>
       </BrowserRouter>
     </AuthProvider>

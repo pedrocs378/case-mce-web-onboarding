@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 
 import { Input } from '../../components/Input'
@@ -11,23 +11,33 @@ import logoImg from '../../assets/images/logo.png'
 
 import * as S from './styles'
 
-export function ForgotPassword() {
-	const [email, setEmail] = useState('')
+type RouteParams = {
+	email: string
+}
+
+export function ValidateToken() {
+	const [token, setToken] = useState('')
 	const [isLoading, setIsLoading] = useState(false)
 
 	const history = useHistory()
 
-	async function handleSendToken(event: FormEvent) {
+	const location = useLocation()
+	const { email } = location.state as RouteParams
+
+	async function handleValidToken(event: FormEvent) {
 		event.preventDefault()
 		setIsLoading(true)
 
 		try {
-			await api.post('/password/forgot', { email })
+			await api.post('/password/validate_token', { 
+				email,
+				token
+			})
 
-			history.push('/validate-token', { email })
-			toast.success('E-mail enviado')
+			history.push('/reset-password', { email })
+			toast.success('Token validado')
 		} catch (err) {
-			let message = 'Algo deu errado ao tentar enviar o código.'
+			let message = 'Algo deu errado ao tentar validar o token.'
 
 			if (err.response.data.message) {
 				message = err.response.data.message
@@ -41,24 +51,21 @@ export function ForgotPassword() {
 
 	return (
 		<S.Container>
-			<form onSubmit={handleSendToken}>
+			<form onSubmit={handleValidToken}>
 				<img src={logoImg} alt="Mind Education" />
 
 				<Input
-					name="email"
-					placeholder="Digite o seu e-mail"
-					value={email}
-					onChange={event => setEmail(event.target.value)}
+					type="number"
+					name="token"
+					placeholder="Token"
+					maxLength={5}
+					value={token}
+					onChange={event => setToken(event.target.value)}
 				/>
 
 				<Button type="submit" loading={isLoading}>
-					Enviar código
+					Verificar
 				</Button>
-
-				<p>
-					Já possui uma conta?{' '}
-					<Link to="/login">Entrar</Link>
-				</p>
 			</form>
 		</S.Container>
 	)

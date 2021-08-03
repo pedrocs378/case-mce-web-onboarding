@@ -1,6 +1,7 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useEffect } from "react";
 import { QueryObserverResult, RefetchOptions, useQuery } from 'react-query'
 
+import { queryClient } from "../services/queryClient";
 import { api } from "../services/api";
 
 type Notification = {
@@ -31,6 +32,12 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
 		refetchOnWindowFocus: false
 		
 	})
+
+	useEffect(() => {
+		return () => {
+			queryClient.cancelQueries()
+		}
+	}, [])
 
 	return (
 		<NotificationContext.Provider value={{
