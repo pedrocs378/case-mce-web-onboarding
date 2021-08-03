@@ -1,15 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast'
-import { QueryClientProvider, QueryClient } from 'react-query'
+import { QueryClientProvider } from 'react-query'
 
 import { Routes } from './routes';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { NotificationProvider } from './contexts/NotificationContext';
 
-import GlobalStyles from './styles/global'
+import { queryClient } from './services/queryClient';
 
-const queryClient = new QueryClient()
+import GlobalStyles from './styles/global'
 
 function App() {
   return (

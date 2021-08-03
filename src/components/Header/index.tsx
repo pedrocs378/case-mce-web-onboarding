@@ -1,20 +1,31 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
+import {  } from 'react-query'
 
 import { useAuth } from '../../hooks/useAuth'
 import { useNotification } from '../../hooks/useNotification'
 
 import userPlaceholderImg from '../../assets/images/user-placeholder.png'
 
+import { api } from '../../services/api'
+
 import * as S from './styles'
 
 export function Header() {
 	const { user, signOut } = useAuth()
-	const { notifications } = useNotification()
+	const { notifications, refetch } = useNotification()
 
 	const [previousLength, setPreviousLength] = useState(0)
 	const [showNotifications, setShowNotifications] = useState(false)
+
+	const handleReadNotification = useCallback(async (id: string) => {
+		await api.patch(`/notifications/${id}`, {
+			read: true
+		})
+
+		await refetch()
+	}, [refetch])
 	
 	useEffect(() => {
 		if (notifications && notifications.length !== previousLength) {
@@ -42,7 +53,10 @@ export function Header() {
 					<S.NotificationsContainer>
 						{notifications && notifications.length > 0 ? notifications.map(notification => {
 							return (
-								<S.NotificationItem key={notification.id}>
+								<S.NotificationItem 
+									key={notification.id}
+									onClick={() => handleReadNotification(notification.id)}
+								>
 									<p>{notification.content}</p>
 								</S.NotificationItem>
 							)

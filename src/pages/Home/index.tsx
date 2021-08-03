@@ -49,7 +49,7 @@ export function Home() {
 
 	useEffect(() => {
 		const day = selectedDate.getDate()
-		const month = selectedDate.getMonth()
+		const month = selectedDate.getMonth() + 1
 		const year = selectedDate.getFullYear()
 
 		api
@@ -88,13 +88,13 @@ export function Home() {
 										<>
 											<S.AvailabilityButton 
 												type="button"
-												enabled={true}
+												enabled={appointment.available}
 											>
 												Disponivel
 											</S.AvailabilityButton>
 											<S.AvailabilityButton 
 												type="button"
-												enabled={false}
+												enabled={!appointment.available}
 											>
 												Não disponivel
 											</S.AvailabilityButton>

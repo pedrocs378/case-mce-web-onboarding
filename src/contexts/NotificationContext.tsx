@@ -1,5 +1,6 @@
 import { createContext, ReactNode } from "react";
-import { useQuery } from 'react-query'
+import { QueryObserverResult, RefetchOptions, useQuery } from 'react-query'
+
 import { api } from "../services/api";
 
 type Notification = {
@@ -9,6 +10,7 @@ type Notification = {
 
 type NotificationContextData = {
 	notifications: Notification[] | undefined
+	refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<Notification[], unknown>>
 }
 
 type NotificationProviderProps = {
@@ -24,7 +26,7 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
 		return response.data
 	}
 	
-	const { data: notifications } = useQuery('notifications', fetchNotifications, {
+	const { data: notifications, refetch } = useQuery('notifications', fetchNotifications, {
 		refetchInterval: 10000,
 		refetchOnWindowFocus: false
 		
@@ -32,7 +34,8 @@ export function NotificationProvider({ children }: NotificationProviderProps) {
 
 	return (
 		<NotificationContext.Provider value={{
-			notifications
+			notifications,
+			refetch
 		}}>
 			{children}
 		</NotificationContext.Provider>
