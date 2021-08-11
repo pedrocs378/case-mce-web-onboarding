@@ -77,6 +77,13 @@ export function Home() {
 
 			toast.success('Horários atualizados com sucesso')
 		} catch (err) {
+			appointments.forEach(appointment => {
+				setAvailabilityHours((state) => ({
+					...state,
+					[appointment.hour]: appointment.available
+				}))
+			})
+
 			let message = 'Algo deu errado ao tentar atualizar os horários'
 
 			if (err.response.data.message) {
