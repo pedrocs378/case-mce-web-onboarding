@@ -3,6 +3,7 @@ import { QueryObserverResult, RefetchOptions, useQuery } from 'react-query'
 
 import { queryClient } from "../services/queryClient";
 import { api } from "../services/api";
+import { useAuth } from "../hooks/useAuth";
 
 type Notification = {
 	id: string
@@ -21,7 +22,11 @@ type NotificationProviderProps = {
 export const NotificationContext = createContext({} as NotificationContextData)
 
 export function NotificationProvider({ children }: NotificationProviderProps) {
+	const { user } = useAuth()
+
 	async function fetchNotifications(): Promise<Notification[]> {
+		if (!user) return []
+
 		const response = await api.get<Notification[]>('/notifications')
 
 		return response.data

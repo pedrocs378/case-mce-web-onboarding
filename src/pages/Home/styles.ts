@@ -124,6 +124,8 @@ type AvailabilityButtonProps = {
 
 export const AvailabilityButton = styled.button<AvailabilityButtonProps>`
 	height: 2.5rem;
+	min-width: 82px;
+
 	padding: 0.625rem;
 	border-radius: 0.625rem;
 	font: 700 0.75rem 'Montserrat', sans-serif;
@@ -132,10 +134,21 @@ export const AvailabilityButton = styled.button<AvailabilityButtonProps>`
 	color: var(--orange);
 	margin-top: 10px;
 
-	${({ enabled }) => enabled && css`
+	transition: all 0.2s;
+
+	${({ enabled }) => enabled ? css`
 		border-color: transparent;
 		background: var(--orange);
 		color: var(--white);
+
+		&:hover {
+			opacity: 0.8;
+		}
+	` : css`
+		&:hover {
+			background: var(--orange);
+			color: var(--white);
+		}
 	`}
 
 	display: inline-flex;
