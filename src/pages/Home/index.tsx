@@ -161,15 +161,17 @@ export function Home() {
 										<>
 											<S.AvailabilityButton 
 												type="button"
-												enabled={availabilityHours[appointment.hour]}
+												filled={availabilityHours[appointment.hour]}
 												onClick={() => handleToggleAvailabilityHour(appointment.hour)}
+												disabled={!!appointment.user}
 											>
 												Disponivel
 											</S.AvailabilityButton>
 											<S.AvailabilityButton 
 												type="button"
-												enabled={!availabilityHours[appointment.hour]}
+												filled={!availabilityHours[appointment.hour]}
 												onClick={() => handleToggleAvailabilityHour(appointment.hour)}
+												disabled={!!appointment.user}
 											>
 												Não disponivel
 											</S.AvailabilityButton>
@@ -183,7 +185,7 @@ export function Home() {
 						<S.AvailabilityButton 
 							type="button"
 							onClick={handleConfirmChanges}
-							enabled
+							filled
 						>
 							{isLoading ? (
 								<Loading

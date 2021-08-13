@@ -1,15 +1,16 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useMemo, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import { formatPhoneNumber } from 'react-phone-number-input'
 import { toast } from 'react-hot-toast'
 import * as Yup from 'yup'
-import Loading from 'react-loading'
 
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
 import { InputPassword } from '../../components/Input/InputPassword'
 
-import { api } from '../../services/api'
 import { getValidationErrors } from '../../utils/getValidationErrors'
+import { checkPhoneNumber } from '../../utils/checkPhoneNumber'
+import { api } from '../../services/api'
 
 import * as S from './styles'
 
@@ -26,7 +27,9 @@ type ValidationError = {
 const validationShape = {
 	name: Yup.string().required('Nome é obrigatório').min(3, 'Nome muito curto'),
 	email: Yup.string().required('Email é obrigatório').email('O email precisa ser válido'),
-	phone: Yup.string().required('Número do telefone é obrigatório').min(11, 'Número muito curto'),
+	phone: Yup.string()
+		.required('Número do telefone é obrigatório')
+		.test('isPhoneNumber', 'Número inválido', (value) => checkPhoneNumber(value)),
 	password: Yup.string().required('Senha obrigatória').min(6, 'A senha precisa ter no minímo 6 caracteres'),
 	password_confirmation: Yup.string()
 		.oneOf([Yup.ref('password'), null], 'As senhas precisam ser iguais')
@@ -132,6 +135,12 @@ export function Register() {
 		}
 	}
 
+	const formattedPhone = useMemo(() => {
+		const output = formatPhoneNumber(`+55${phone}`)
+
+		return output.trim() ? output : phone
+	}, [phone])
+
 	return (
 		<S.Container>
 			<form onSubmit={handleRegister}>
@@ -149,9 +158,9 @@ export function Register() {
 					type="tel"
 					name="phone"
 					placeholder="Telefone"
-					value={phone}
+					value={formattedPhone}
 					onChange={event => setPhone(event.target.value)}
-					onInputBlur={(value) => handleValidField('phone', value)}
+					onInputBlur={() => handleValidField('phone', phone)}
 					isValidated={!!validatedFields['phone']}
 					isErrored={!!validationErrors['phone']}
 				/>
@@ -184,15 +193,8 @@ export function Register() {
 					isErrored={!!validationErrors['password_confirmation']}
 				/>
 
-				<Button type="submit">
-					{isLoading ? 
-						<Loading 
-							type="spinningBubbles"
-							height={24}
-							width={24}
-							color="var(--white)"
-						/> 
-						: "Cadastrar"}
+				<Button type="submit" loading={isLoading}>
+					Cadastrar
 				</Button>
 
 				<p>

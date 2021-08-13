@@ -119,7 +119,7 @@ export const MainContent = styled.div`
 `
 
 type AvailabilityButtonProps = {
-	enabled: boolean
+	filled: boolean
 }
 
 export const AvailabilityButton = styled.button<AvailabilityButtonProps>`
@@ -134,9 +134,14 @@ export const AvailabilityButton = styled.button<AvailabilityButtonProps>`
 	color: var(--orange);
 	margin-top: 10px;
 
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+
 	transition: all 0.2s;
 
-	${({ enabled }) => enabled ? css`
+	${({ filled }) => filled ? css`
 		border-color: transparent;
 		background: var(--orange);
 		color: var(--white);
@@ -151,10 +156,10 @@ export const AvailabilityButton = styled.button<AvailabilityButtonProps>`
 		}
 	`}
 
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	align-self: center;
+	&[disabled] {
+		opacity: 0.5;
+		pointer-events: none;
+	}
 
 	& + button {
 		margin-left: 1rem;

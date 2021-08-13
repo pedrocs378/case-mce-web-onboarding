@@ -10,14 +10,14 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export function Button({ loading = false, children, ...rest }: ButtonProps) {
 	return (
 		<S.Container {...rest}>
-			{loading ? 
-			<Loading
-				type="spinningBubbles"
-				height={24}
-				width={24}
-				color="var(--white)"
-			/> 
-			: children}
+			{loading ? (
+				<Loading
+					type="spinningBubbles"
+					height={24}
+					width={24}
+					color="var(--white)"
+				/>
+			) : children}
 		</S.Container>
 	)
 }
